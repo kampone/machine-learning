@@ -21,12 +21,21 @@ grad = zeros(size(theta));
 %
 
 
+J = (1/m)*sum(-y .* log (sigmoid(X * theta)) - (1 - y) .* log(1 - sigmoid(X * theta)));
 
+coef = sigmoid(X * theta) - y;
+X_temp = X;
 
+for i = 1 : size(X_temp, 1)
+  X_temp(i, :) = X_temp(i, :) .* coef(i); 
 
-
-
+end
+grad = sum(X_temp)./m;
 
 % =============================================================
 
+end
+
+function g = sigmoid(z)
+g = 1 ./ (1 + e .^ (-z));
 end
