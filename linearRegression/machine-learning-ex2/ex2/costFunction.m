@@ -26,13 +26,11 @@ J = (1/m)*sum(-y .* log (sigmoid(X * theta)) - (1 - y) .* log(1 - sigmoid(X * th
 coef = sigmoid(X * theta) - y;
 X_temp = X;
 
-for i = 1 : size(X_temp, 1)
-  X_temp(i, :) = X_temp(i, :) .* coef(i); 
+  for i = 1 : size(X_temp, 1)
+    X_temp(i, :) = X_temp(i, :) .* coef(i); 
 
-end
+  end
 grad = sum(X_temp)./m;
-
-% =============================================================
 
 end
 
